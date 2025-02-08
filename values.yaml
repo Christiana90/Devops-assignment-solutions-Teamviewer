@@ -1,4 +1,0 @@
-# Default values for my-go-app.
-
-# The port where the application will listen.
-port: 8081
