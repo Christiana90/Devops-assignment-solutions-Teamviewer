@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: my-go-app
+  repository: 339713085736.dkr.ecr.eu-central-1.amazonaws.com/mygo/app
   pullPolicy: IfNotPresent
   tag: "latest"
 

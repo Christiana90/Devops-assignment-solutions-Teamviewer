@@ -39,13 +39,15 @@ cd your-repository
 Run the Go application using the following command:
 
 ```bash
-go run main.go 8081
+go run main.go 8083
 ```
 
-This will start the server on `http://localhost:8081`. You can access the endpoints:
+This will start the server on `http://localhost:8083`. You can access the endpoints:
 
 - `/aluminium/sphere?dimension=<radius>`: Calculates the mass of an aluminum sphere based on the radius.
 - `/iron/cube?dimension=<side>`: Calculates the mass of an iron cube based on the side length.
+
+http://localhost:8083/aluminium/sphere?dimension=3
 
 ---
 
@@ -64,14 +66,21 @@ docker build -t my-go-app .
 Run the container with the desired port (default is 8081):
 
 ```bash
-docker run -p 8081:8081 my-go-app
+docker run -p 8083:8083 my-go-app
 ```
 
 You can change the port by setting the `PORT` environment variable:
 
 ```bash
-docker run -p 8083:8083 -e PORT=8083 my-go-app
+docker run -p 8080:8080 -e PORT=8080 my-go-app
 ```
+This will start the container server on `http://localhost:8083`. You can access the endpoints:
+
+- `/aluminium/sphere?dimension=<radius>`: Calculates the mass of an aluminum sphere based on the radius.
+- `/iron/cube?dimension=<side>`: Calculates the mass of an iron cube based on the side length.
+
+http://localhost:8083/aluminium/sphere?dimension=3
+http://localhost:8083/iron/cube?dimension=3
 
 ---
 
@@ -115,12 +124,10 @@ You can now access the application at `http://localhost:8081`.
 
 ```
 my-go-app/
-├── Chart.yaml
-├── values.yaml
 ├── main.go
 ├── Dockerfile
 ├── README.md
-└── my-go-app-chart/
+└── chart/
     ├── Chart.yaml
     ├── values.yaml
     └── templates/
@@ -134,10 +141,10 @@ my-go-app/
 
 - **`main.go`**: The Go application that calculates the mass of a sphere or cube based on dimensions passed via HTTP queries.
 - **`Dockerfile`**: The Dockerfile used to containerize the Go application.
-- **`my-go-app-chart/Chart.yaml`**: The metadata for the Helm chart.
-- **`my-go-app-chart/values.yaml`**: The configurable values, including the port where the application will run.
-- **`my-go-app-chart/templates/deployment.yaml`**: Kubernetes deployment configuration.
-- **`my-go-app-chart/templates/service.yaml`**: Kubernetes service configuration for exposing the application.
+- **`chart/Chart.yaml`**: The metadata for the Helm chart.
+- **`chart/values.yaml`**: The configurable values, including the port where the application will run.
+- **`chart/templates/deployment.yaml`**: Kubernetes deployment configuration.
+- **`chart/templates/service.yaml`**: Kubernetes service configuration for exposing the application.
 
 ---
 
